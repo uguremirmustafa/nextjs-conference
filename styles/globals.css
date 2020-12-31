@@ -1,3 +1,5 @@
+/** @format */
+
 html,
 body {
   padding: 0;
@@ -9,16 +11,9 @@ body {
 * {
   box-sizing: border-box;
 }
-
-main {
-  padding: 5rem 0;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
+/* main {
+  margin-top: 90px;
+} */
 code {
   background: #fafafa;
   border-radius: 5px;
