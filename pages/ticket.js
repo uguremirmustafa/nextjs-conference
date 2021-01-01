@@ -1,4 +1,5 @@
 /** @format */
+import PagesLayout from '@components/layouts/PagesLayout';
 import React from 'react';
 
 function Ticket() {
@@ -8,5 +9,5 @@ function Ticket() {
     </div>
   );
 }
-
+Ticket.Layout = PagesLayout;
 export default Ticket;

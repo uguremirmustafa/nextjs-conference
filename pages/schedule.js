@@ -1,5 +1,6 @@
 /** @format */
 
+import PagesLayout from '@components/layouts/PagesLayout';
 import React from 'react';
 
 function Schedule() {
@@ -9,5 +10,5 @@ function Schedule() {
     </div>
   );
 }
-
+Schedule.Layout = PagesLayout;
 export default Schedule;

@@ -28,7 +28,7 @@ function CountDown({ time }) {
             {hours}:{minutes}:{seconds}
           </Text>
           <Text fontSize="xl">left to the event, hurry up!</Text>
-          <Button size="lg" mt="4" colorScheme="orange" onClick={() => router.push('/ticket')}>
+          <Button my="8" size="md" colorScheme="orange" onClick={() => router.push('/ticket')}>
             Buy Ticket Now
           </Button>
         </Box>

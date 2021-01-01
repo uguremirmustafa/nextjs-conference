@@ -2,8 +2,10 @@
 
 import React from 'react';
 import { Box, Flex, Heading, HStack, Button, Text } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
 
 function Slide({ image }) {
+  const router = useRouter();
   return (
     <Box>
       <Flex
@@ -11,10 +13,7 @@ function Slide({ image }) {
         justify="center"
         align="center"
         textAlign="center"
-        height={{
-          base: '70vh', // 0-48em
-          md: '100vh', // 48em-80em,
-        }}
+        height="100vh"
         w="100%"
         color="white"
         zIndex="5"
@@ -22,23 +21,27 @@ function Slide({ image }) {
         bgImage={`url(${image})`}
         bgPosition="center"
         bgRepeat="no-repeat"
-        style={{ boxShadow: 'inset 0 0 0 100vw rgba(0,0,0,0.5)' }}
+        style={{ boxShadow: 'inset 0 0 0 100vw rgba(0,0,0,0.6)' }}
       >
-        <Heading mb="8" fontSize={{ base: '34px', md: '40px', lg: '56px' }}>
+        <Heading
+          mb="8"
+          fontSize={{ base: '34px', md: '44px', lg: '56px' }}
+          w={{ base: '200px', md: '600px' }}
+        >
           next js conference
         </Heading>
-        <HStack mb="8" spacing="4" color="gray.100" cursor="pointer">
-          <Flex justify="center" align="center" _hover={{ color: 'orange.400' }}>
-            <Text ml="2"> January 20, 2020</Text>
+        <Flex mb="8" color="gray.100" cursor="pointer" direction={{ base: 'column', md: 'row' }}>
+          <Flex p="4" justify="center" align="center" _hover={{ color: 'orange.400' }}>
+            <Text>January 20, 2020</Text>
           </Flex>
-          <Flex justify="center" align="center" _hover={{ color: 'orange.400' }}>
-            <Text ml="2">Istanbul</Text>
+          <Flex p="4" justify="center" align="center" _hover={{ color: 'orange.400' }}>
+            <Text>Istanbul</Text>
           </Flex>
-          <Flex justify="center" align="center" _hover={{ color: 'orange.400' }}>
-            <Text ml="2">Zorlu PSM</Text>
+          <Flex p="4" justify="center" align="center" _hover={{ color: 'orange.400' }}>
+            <Text>Zorlu PSM</Text>
           </Flex>
-        </HStack>
-        <Button size="lg" colorScheme="orange" onClick={() => router.push('/ticket')}>
+        </Flex>
+        <Button size="md" colorScheme="orange" onClick={() => router.push('/ticket')}>
           Buy Ticket Now
         </Button>
       </Flex>

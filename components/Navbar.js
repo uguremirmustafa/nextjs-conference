@@ -15,7 +15,7 @@ import {
 import React, { useEffect, useState } from 'react';
 import NextLink from 'next/link';
 //TODO : REFACTOR THIS NAVBAR, IT NEEDS TO BE MORE CLEAN
-function Navbar() {
+function Navbar({ transparent }) {
   const [navbar, setNavbar] = useState(false);
   const [click, setClick] = useState(false);
   const [dropdown, setDropdown] = useState(false);
@@ -57,15 +57,24 @@ function Navbar() {
         top="0"
         left="0"
         color={navbar ? 'gray.100' : 'white'}
-        bgColor={navbar ? 'gray.900' : 'transparent'}
-        bgGradient={navbar ? 'gray.500' : 'linear(to-b, black, transparent)'}
-        h={navbar ? '80px' : '100px'}
+        // bgColor={navbar ? 'gray.900' : click ? 'gray.900' : 'transparent'}
+        bgColor={{
+          base: transparent
+            ? navbar
+              ? 'gray.900'
+              : click
+              ? 'gray.900'
+              : 'transparent'
+            : 'gray.900',
+        }}
+        bgGradient={transparent ? (navbar ? 'gray.500' : 'linear(to-b, black, transparent)') : ''}
+        h={navbar ? '80px' : '80px'}
         w="100%"
         zIndex="200"
         fontWeight="bold"
         justify="space-between"
         align="center"
-        transition="ease-in all 0.3s"
+        transition="ease-in height 0.3s"
         p="8"
         textTransform="capitalize"
       >
@@ -80,17 +89,17 @@ function Navbar() {
         <List
           flexDirection={{ base: 'column', md: 'row' }}
           align="end"
-          transition="ease 0.3s all"
+          transition="ease-in 0.3s all"
           display={{ base: click ? 'flex' : 'none', md: 'flex' }}
           position={{ base: 'absolute', md: 'relative' }}
           top="0"
           right="0"
           py={{ base: '100px', md: '0' }}
-          bgColor={{ base: navbar ? 'gray.900' : 'transparent' }}
+          bgColor={{ base: navbar ? 'gray.900' : click ? 'gray.900' : 'transparent' }}
           w={{ base: '100vw', md: 'auto' }}
           justify="center"
           align="center"
-          transition="all ease 0.3s"
+          transition="all ease 0.1s"
         >
           <ListItem
             ml="4"
@@ -100,9 +109,7 @@ function Navbar() {
             px="4"
             borderRadius={{ base: '0', md: 'sm' }}
           >
-            <Link>
-              <NextLink href="/location">Location</NextLink>
-            </Link>
+            <NextLink href="/location">Location</NextLink>
           </ListItem>
           <ListItem
             ml="4"
@@ -112,9 +119,7 @@ function Navbar() {
             px="4"
             borderRadius={{ base: '0', md: 'sm' }}
           >
-            <Link>
-              <NextLink href="/food">Food</NextLink>
-            </Link>
+            <NextLink href="/food">Food</NextLink>
           </ListItem>
           <ListItem
             ml="4"
@@ -124,10 +129,8 @@ function Navbar() {
             px="4"
             borderRadius={{ base: '0', md: 'sm' }}
           >
-            <Link>
-              <NextLink href="/speakers">Speakers</NextLink>
-              {/* {dropdown && <Dropdown />} */}
-            </Link>
+            <NextLink href="/speakers">Speakers</NextLink>
+            {/* {dropdown && <Dropdown />} */}
           </ListItem>
           <ListItem
             ml="4"
@@ -137,9 +140,7 @@ function Navbar() {
             px="4"
             borderRadius={{ base: '0', md: 'sm' }}
           >
-            <Link>
-              <NextLink href="/schedule">Schedule</NextLink>
-            </Link>
+            <NextLink href="/schedule">Schedule</NextLink>
           </ListItem>
         </List>
         {!click ? (
