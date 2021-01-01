@@ -10,7 +10,6 @@ function SpeakerCard() {
   const image = faker.image.imageUrl();
   const email = faker.internet.email();
   const company = faker.company.companyName();
-  console.log(jobTitle);
   return (
     <Flex
       direction="column"

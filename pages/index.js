@@ -4,7 +4,6 @@ import { Container, Flex, Heading } from '@chakra-ui/react';
 import CountDown from '@components/CountDown';
 import HeroSlider from '@components/HeroSwiper';
 import SpeakerCard from '@components/SpeakerCard';
-import Head from 'next/head';
 
 export default function Home() {
   return (

@@ -18,18 +18,17 @@ function CountDown({ time }) {
       // Render a countdown
       return (
         <Box textAlign="center">
-          <Text fontSize="6xl" fontWeight="bold" textAlign="center" fontFamily="Monospace" pt="8">
+          <Text
+            fontSize={{ base: '40px', lg: '56px' }}
+            fontWeight="bold"
+            textAlign="center"
+            fontFamily="Monospace"
+            pt="8"
+          >
             {hours}:{minutes}:{seconds}
           </Text>
           <Text fontSize="xl">left to the event, hurry up!</Text>
-          <Button
-            fontSize="20px"
-            px="12"
-            py="8"
-            mt="4"
-            colorScheme="orange"
-            onClick={() => router.push('/ticket')}
-          >
+          <Button size="lg" mt="4" colorScheme="orange" onClick={() => router.push('/ticket')}>
             Buy Ticket Now
           </Button>
         </Box>

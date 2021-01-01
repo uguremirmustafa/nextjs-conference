@@ -1,22 +1,47 @@
 /** @format */
 
 import React from 'react';
-import { Box, Image } from '@chakra-ui/react';
-import CallToAction from './CallToAction';
+import { Box, Flex, Heading, HStack, Button, Text } from '@chakra-ui/react';
 
 function Slide({ image }) {
   return (
     <Box>
-      <Box
-        position="absolute"
-        h="100vh"
-        w="100vw"
-        bgColor="gray.900"
-        style={{ filter: 'opacity(0.4)' }}
-        id="filter"
-      ></Box>
-      <Image src={image} h="100vh" w="100%" mx="auto" objectFit="cover" />
-      <CallToAction />
+      <Flex
+        direction="column"
+        justify="center"
+        align="center"
+        textAlign="center"
+        height={{
+          base: '70vh', // 0-48em
+          md: '100vh', // 48em-80em,
+        }}
+        w="100%"
+        color="white"
+        zIndex="5"
+        textTransform="capitalize"
+        bgImage={`url(${image})`}
+        bgPosition="center"
+        bgRepeat="no-repeat"
+        style={{ boxShadow: 'inset 0 0 0 100vw rgba(0,0,0,0.5)' }}
+      >
+        <Heading mb="8" fontSize={{ base: '34px', md: '40px', lg: '56px' }}>
+          next js conference
+        </Heading>
+        <HStack mb="8" spacing="4" color="gray.100" cursor="pointer">
+          <Flex justify="center" align="center" _hover={{ color: 'orange.400' }}>
+            <Text ml="2"> January 20, 2020</Text>
+          </Flex>
+          <Flex justify="center" align="center" _hover={{ color: 'orange.400' }}>
+            <Text ml="2">Istanbul</Text>
+          </Flex>
+          <Flex justify="center" align="center" _hover={{ color: 'orange.400' }}>
+            <Text ml="2">Zorlu PSM</Text>
+          </Flex>
+        </HStack>
+        <Button size="lg" colorScheme="orange" onClick={() => router.push('/ticket')}>
+          Buy Ticket Now
+        </Button>
+      </Flex>
     </Box>
   );
 }
