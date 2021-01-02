@@ -4,8 +4,16 @@ import { Flex, Heading, Text, Link, Container } from '@chakra-ui/react';
 import PagesLayout from '@components/layouts/PagesLayout';
 import React from 'react';
 import EventMap from '@components/EventMap';
+import sanity from '../lib/sanity';
 
-function Location() {
+const queryConference = `*[_type == "conference"] {
+  city,
+  conferenceBuilding,
+  address
+}
+`;
+function Location({ conference }) {
+  const conf = conference[0];
   return (
     <Container maxW="1024px">
       <Flex direction="column" justify="center" align="center" textAlign="center">
@@ -17,25 +25,28 @@ function Location() {
         >
           The beautiful city{' '}
           <Text fontWeight="bold" textDecoration="underline" color="green.600">
-            Istanbul
+            {conf.city}
           </Text>{' '}
           is the location for this year's conference.
         </Heading>
         <Text p="4">
           You can find detailed info about the conference building{' '}
           <Link color="green.600" fontWeight="bold" href="https://www.zorlupsm.com/tr">
-            Zorlu PSM
+            {conf.conferenceBuilding}
           </Link>{' '}
           from their website. The building is pinned on the map!
         </Text>
-        <Text mb="8">
-          Address: Zorlu Center, Levazım Mah. Koru Sok. No:2/PSM/70 Zincirlikuyu, Beşiktaş /
-          İstanbul
-        </Text>
+        <Text mb="8">Address: {conf.address}</Text>
       </Flex>
       <EventMap />
     </Container>
   );
 }
+export const getStaticProps = async () => {
+  const conference = await sanity.fetch(queryConference);
+  return {
+    props: { conference }, // will be passed to the page component as props
+  };
+};
 Location.Layout = PagesLayout;
 export default Location;

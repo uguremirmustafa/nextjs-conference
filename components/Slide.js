@@ -1,11 +1,18 @@
 /** @format */
 
 import React from 'react';
-import { Box, Flex, Heading, HStack, Button, Text } from '@chakra-ui/react';
+import { Box, Flex, Heading, Button, Text } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
+import imageUrlFor from 'utils/imageUrlFor';
 
-function Slide({ image }) {
+function Slide({ image, conf }) {
   const router = useRouter();
+  const imgUrl = imageUrlFor(image).ignoreImageParams();
+  const confDate = new Date(conf.startingDate).toLocaleDateString('en-EN', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
   return (
     <Box>
       <Flex
@@ -18,8 +25,9 @@ function Slide({ image }) {
         color="white"
         zIndex="5"
         textTransform="capitalize"
-        bgImage={`url(${image})`}
+        bgImage={`url(${imgUrl})`}
         bgPosition="center"
+        bgSize="cover"
         bgRepeat="no-repeat"
         style={{ boxShadow: 'inset 0 0 0 100vw rgba(0,0,0,0.6)' }}
       >
@@ -32,13 +40,13 @@ function Slide({ image }) {
         </Heading>
         <Flex mb="8" color="gray.100" cursor="pointer" direction={{ base: 'column', md: 'row' }}>
           <Flex p="4" justify="center" align="center" _hover={{ color: 'orange.400' }}>
-            <Text>January 20, 2020</Text>
+            <Text>{confDate}</Text>
           </Flex>
           <Flex p="4" justify="center" align="center" _hover={{ color: 'orange.400' }}>
-            <Text>Istanbul</Text>
+            <Text>{conf.city}</Text>
           </Flex>
           <Flex p="4" justify="center" align="center" _hover={{ color: 'orange.400' }}>
-            <Text>Zorlu PSM</Text>
+            <Text>{conf.conferenceBuilding}</Text>
           </Flex>
         </Flex>
         <Button size="md" colorScheme="orange" onClick={() => router.push('/ticket')}>
