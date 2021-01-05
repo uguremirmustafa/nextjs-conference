@@ -11,9 +11,9 @@ function ImageCard({ image }) {
         src={imgUrl}
         borderTopRadius="md"
         w="100%"
-        h="260px"
-        height="100%"
+        h="400px"
         objectFit="cover"
+        objectPosition="top"
         transition="ease .3s all"
         _hover={{ opacity: '0.8' }}
         cursor="pointer"

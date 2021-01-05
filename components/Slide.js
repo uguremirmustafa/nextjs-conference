@@ -4,7 +4,7 @@ import React from 'react';
 import { Box, Flex, Heading, Button, Text } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import imageUrlFor from 'utils/imageUrlFor';
-
+import { FaCalendarCheck, FaRegBuilding, FaMapMarkerAlt } from 'react-icons/fa';
 function Slide({ image, conf }) {
   const router = useRouter();
   const imgUrl = imageUrlFor(image).ignoreImageParams();
@@ -40,13 +40,22 @@ function Slide({ image, conf }) {
         </Heading>
         <Flex mb="8" color="gray.100" cursor="pointer" direction={{ base: 'column', md: 'row' }}>
           <Flex p="4" justify="center" align="center" _hover={{ color: 'orange.400' }}>
-            <Text>{confDate}</Text>
+            <Flex align="center">
+              <FaCalendarCheck />
+              <Text p="2">{confDate}</Text>
+            </Flex>
           </Flex>
           <Flex p="4" justify="center" align="center" _hover={{ color: 'orange.400' }}>
-            <Text>{conf.city}</Text>
+            <Flex align="center">
+              <FaMapMarkerAlt />
+              <Text p="2">{conf.city}</Text>
+            </Flex>
           </Flex>
           <Flex p="4" justify="center" align="center" _hover={{ color: 'orange.400' }}>
-            <Text>{conf.conferenceBuilding}</Text>
+            <Flex align="center">
+              <FaRegBuilding />
+              <Text p="2">{conf.conferenceBuilding}</Text>
+            </Flex>
           </Flex>
         </Flex>
         <Button size="md" colorScheme="orange" onClick={() => router.push('/ticket')}>
